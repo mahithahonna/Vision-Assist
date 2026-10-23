@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vision Assist</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+    <h1>Vision Assist</h1>
+    <p>A helping hand for a more inclusive world.</p>
+</header>
+
+    <main>
+        <section class="card">
+            <h2>Voice Assistant</h2>
+            <p id="status" role="status" aria-live="polite">
+                Welcome! Choose a feature or start speaking.
+            </p>
+            <button id="micButton">🎙 Start Listening</button>
+            <button id="helpButton" class="secondary">
+                Hear Instructions
+            </button>
+            <p id="recognizedText"></p>
+            <p id="responseText" aria-live="polite"></p>
+        </section>
+
+        <section class="card">
+            <h2>Read Text from an Image</h2>
+            <p>Upload a clear photo of printed text.</p>
+
+            <label for="imageInput">Choose an image (JPG or PNG)</label>
+            <input id="imageInput" type="file"
+                   accept="image/png,image/jpeg">
+
+            <button id="readButton">Read Text</button>
+            <div id="ocrResult" role="status" aria-live="polite"></div>
+            <button id="speakOcrButton" class="secondary" hidden>
+                Speak Extracted Text
+            </button>
+        </section>
+
+        <section class="card">
+            <h2>Emergency Contacts</h2>
+            <p>Save a trusted person's phone number on this device.</p>
+
+            <label for="contactName">Contact name</label>
+            <input id="contactName" type="text"
+                   placeholder="For example, Family">
+
+            <label for="contactPhone">Phone number</label>
+            <input id="contactPhone" type="tel"
+                   placeholder="Enter phone number">
+
+            <button id="saveContactButton">Save Contact</button>
+            <p id="contactStatus" role="status" aria-live="polite"></p>
+            <div id="contactList"></div>
+
+            <a class="emergencyLink" href="tel:112">
+                Call Emergency Services (112)
+            </a>
+            <p class="small">
+                Calling availability depends on your device and network.
+            </p>
+        </section>
+
+        <section class="card">
+            <h2>Location Assistance</h2>
+            <p>
+                Allow location access to hear your approximate coordinates
+                and open your position on a map.
+            </p>
+            <button id="locationButton">Find My Location</button>
+            <p id="locationResult" role="status" aria-live="polite"></p>
+            <a id="mapLink" target="_blank"
+               rel="noopener noreferrer" hidden>
+                Open Map
+            </a>
+        </section>
+
+        <section class="card">
+            <h2>Camera Object Recognition</h2>
+            <p>
+                Experimental feature: the model guesses the main object
+                in the camera image. Results may be wrong.
+            </p>
+            <button id="cameraButton">Start Camera</button>
+            <video id="camera" autoplay playsinline muted hidden></video>
+            <button id="recognizeButton" disabled>
+                Identify Object
+            </button>
+            <button id="stopCameraButton" class="secondary" disabled>
+                Stop Camera
+            </button>
+            <p id="cameraResult" role="status" aria-live="polite"></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>
+            Vision Assist is a supplementary aid.
+            Do not rely on it alone for safe navigation.
+        </p>
+    </footer>
+
+    <!-- TensorFlow.js and MobileNet for optional image classification -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.22.0/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@2.1.1/dist/mobilenet.min.js"></script>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,266 @@
+
+/* Vision Assist - Minimal Blue Theme */
+
+:root {
+    --primary: #3478d4;
+    --primary-dark: #174a8b;
+    --primary-light: #e5f0ff;
+    --background: #f3f7fd;
+    --card: #ffffff;
+    --text: #17365f;
+    --muted: #607797;
+    --border: #dce8f7;
+    --danger: #c93e50;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: var(--background);
+    color: var(--text);
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+}
+
+/* Header */
+
+header {
+    padding: 30px 24px 20px;
+    text-align: center;
+    background: linear-gradient(135deg, #e3efff, #f7faff);
+    border-bottom: 1px solid var(--border);
+}
+
+h1 {
+    margin: 0;
+    color: var(--primary-dark);
+    font-size: 36px;
+    font-weight: 750;
+    letter-spacing: -1px;
+}
+
+header p {
+    margin: 6px 0 0;
+    color: var(--muted);
+}
+
+/* Main layout */
+
+main {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+    width: min(1100px, 100%);
+    margin: 0 auto;
+    padding: 28px 22px;
+}
+
+/* Feature cards */
+
+.card {
+    min-width: 0;
+    padding: 26px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    box-shadow: 0 5px 18px rgba(40, 85, 145, 0.05);
+    transition: box-shadow 0.2s ease,
+                transform 0.2s ease;
+}
+
+.card:hover {
+    box-shadow: 0 9px 26px rgba(40, 85, 145, 0.10);
+    transform: translateY(-2px);
+}
+
+h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: var(--primary-dark);
+    font-size: 23px;
+    font-weight: 700;
+}
+
+.card p {
+    color: var(--muted);
+}
+
+/* Form labels */
+
+label {
+    display: block;
+    margin-top: 14px;
+    color: var(--text);
+    font-weight: 600;
+}
+
+input {
+    display: block;
+    width: 100%;
+    min-height: 48px;
+    margin: 8px 0 14px;
+    padding: 12px 14px;
+    background: #fbfdff;
+    color: var(--text);
+    border: 1px solid #cbdcf0;
+    border-radius: 10px;
+    font: inherit;
+}
+
+input:focus {
+    outline: 3px solid #c4ddff;
+    border-color: var(--primary);
+}
+
+/* Buttons */
+
+button,
+.emergencyLink {
+    display: block;
+    width: 100%;
+    min-height: 50px;
+    margin: 12px 0;
+    padding: 13px 18px;
+    border: 1px solid var(--primary);
+    border-radius: 10px;
+    background: var(--primary);
+    color: #ffffff;
+    font: inherit;
+    font-weight: 650;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+button:hover {
+    background: var(--primary-dark);
+}
+
+button.secondary {
+    background: #ffffff;
+    color: var(--primary-dark);
+    border-color: #c6dcfb;
+}
+
+button.secondary:hover {
+    background: var(--primary-light);
+}
+
+button:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+button:focus-visible,
+a:focus-visible {
+    outline: 3px solid #75aaff;
+    outline-offset: 4px;
+}
+
+/* Emergency button */
+
+.emergencyLink {
+    background: #fff5f5;
+    border-color: #f0bfc5;
+    color: var(--danger);
+}
+
+.emergencyLink:hover {
+    background: #ffe8eb;
+}
+
+/* Results and camera */
+
+#status,
+#ocrResult,
+#contactStatus,
+#locationResult,
+#cameraResult {
+    overflow-wrap: anywhere;
+}
+
+#responseText,
+#recognizedText {
+    padding: 10px;
+    border-radius: 8px;
+    background: #f0f6ff;
+    overflow-wrap: anywhere;
+}
+
+#camera {
+    display: block;
+    width: 100%;
+    max-height: 350px;
+    margin: 14px 0;
+    border-radius: 12px;
+    background: #e5edf8;
+    object-fit: contain;
+}
+
+#mapLink {
+    display: inline-block;
+    margin: 10px 0;
+    color: var(--primary-dark);
+    font-weight: 650;
+}
+
+.small {
+    font-size: 14px;
+}
+
+/* Footer */
+
+footer {
+    padding: 24px;
+    text-align: center;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+}
+
+/* Mobile responsive layout */
+
+@media (max-width: 700px) {
+    main {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 18px 14px;
+    }
+
+    .card {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 31px;
+    }
+
+    h2 {
+        font-size: 21px;
+    }
+
+    header {
+        padding: 24px 16px;
+    }
+}
+
+/* Respect reduced-motion preferences */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+        animation: none !important;
+    }
+}
