@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login | Vision Assist</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Vision Assist</h1>
+        <p>A helping hand for a more inclusive world.</p>
+    </header>
+
+    <main class="login-main">
+        <section class="card login-card">
+
+            <div class="login-logo" aria-hidden="true">💙</div>
+            <h2>Welcome Back!</h2>
+            <p>Log in to continue to Vision Assist.</p>
+
+            <form id="loginForm">
+                <label for="email">Email Address</label>
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter your email"
+                    autocomplete="email"
+                    required>
+
+                <label for="password">Password</label>
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Enter your password"
+                    autocomplete="current-password"
+                    required>
+
+                <button type="submit">Log In</button>
+                <p id="loginMessage" role="status" aria-live="polite"></p>
+            </form>
+
+            <div class="login-divider">OR</div>
+
+            <div class="guest-box">
+                <h3>Continue as a Guest</h3>
+                <p>No email or password needed.</p>
+
+                <form action="{{ url_for('guest_login') }}"
+                      method="POST">
+
+                    <button class="guest-button"
+                            type="submit"
+                            name="guest"
+                            value="Guest One">
+                        <span>👤 &nbsp; Guest One</span>
+                        <span>→</span>
+                    </button>
+
+                    <button class="guest-button"
+                            type="submit"
+                            name="guest"
+                            value="Guest Two">
+                        <span>👤 &nbsp; Guest Two</span>
+                        <span>→</span>
+                    </button>
+
+                    <button class="guest-button"
+                            type="submit"
+                            name="guest"
+                            value="Guest Three">
+                        <span>👤 &nbsp; Guest Three</span>
+                        <span>→</span>
+                    </button>
+                </form>
+            </div>
+
+            <p class="login-note">
+                Accessible technology, made simple.
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        Vision Assist · Accessibility for everyone
+    </footer>
+
+    <script>
+        document.getElementById("loginForm").addEventListener(
+            "submit", function(event) {
+                event.preventDefault();
+
+                document.getElementById("loginMessage").textContent =
+                    "Email login is not set up yet. Please choose a guest account below.";
+            }
+        );
+    </script>
+</body>
+</html>
