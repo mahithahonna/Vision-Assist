@@ -1,0 +1,155 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Vision Assist</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='login.css') }}">
+</head>
+<body class="login-page">
+
+    <main class="login-layout">
+
+        <section class="login-intro">
+            <a href="{{ url_for('login') }}" class="login-brand">
+                <span class="login-brand-icon" aria-hidden="true">◉</span>
+                <span>vision<span>assist</span></span>
+            </a>
+
+            <div class="intro-content">
+                <span class="intro-label">ACCESSIBILITY MADE SIMPLE</span>
+                <h1>A little help.<br>A lot more independence.</h1>
+                <p>
+                    A simple space to listen, read, and stay connected
+                    with the people who matter.
+                </p>
+
+                <div class="intro-features">
+                    <div class="intro-feature">
+                        <span aria-hidden="true">♫</span>
+                        <div>
+                            <strong>Voice assistance</strong>
+                            <p>Interact using your voice.</p>
+                        </div>
+                    </div>
+
+                    <div class="intro-feature">
+                        <span aria-hidden="true">▤</span>
+                        <div>
+                            <strong>Read printed text</strong>
+                            <p>Turn image text into spoken words.</p>
+                        </div>
+                    </div>
+
+                    <div class="intro-feature">
+                        <span aria-hidden="true">♡</span>
+                        <div>
+                            <strong>Stay connected</strong>
+                            <p>Keep emergency contacts close.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <p class="intro-footer">VISION ASSIST · ACCESS FOR EVERYONE</p>
+        </section>
+
+        <section class="login-main">
+            <div class="login-card">
+                <div class="mobile-brand">
+                    <span class="login-brand-icon" aria-hidden="true">◉</span>
+                    <span>vision<span>assist</span></span>
+                </div>
+
+                <div class="login-heading">
+                    <span class="login-kicker">WELCOME BACK</span>
+                    <h2>Sign in</h2>
+                    <p>Enter your details to continue.</p>
+                </div>
+
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="login-message {{ category }}"
+                                 role="alert">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+
+                <form method="POST" action="{{ url_for('login') }}"
+                      class="login-form">
+                    <div class="login-field">
+                        <label for="email">Email address</label>
+                        <input
+                            id="email"
+                            type="email"
+                            name="email"
+                            placeholder="you@example.com"
+                            autocomplete="email"
+                            required
+                        >
+                    </div>
+
+                    <div class="login-field">
+                        <label for="password">Password</label>
+                        <input
+                            id="password"
+                            type="password"
+                            name="password"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            required
+                        >
+                    </div>
+
+                    <button type="submit" class="login-submit">
+                        Sign in <span aria-hidden="true">→</span>
+                    </button>
+                </form>
+
+                <div class="login-divider">
+                    <span>OR</span>
+                </div>
+
+                
+<div class="guest-options">
+    <p class="guest-heading">OR CONTINUE AS GUEST</p>
+
+    <form method="POST" action="{{ url_for('guest_login') }}">
+        <button type="submit" name="guest" value="Guest One"
+                class="guest-submit">
+            Continue as Guest One <span aria-hidden="true">→</span>
+        </button>
+    </form>
+
+    <form method="POST" action="{{ url_for('guest_login') }}">
+        <button type="submit" name="guest" value="Guest Two"
+                class="guest-submit">
+            Continue as Guest Two <span aria-hidden="true">→</span>
+        </button>
+    </form>
+
+    <form method="POST" action="{{ url_for('guest_login') }}">
+        <button type="submit" name="guest" value="Guest Three"
+                class="guest-submit">
+            Continue as Guest Three <span aria-hidden="true">→</span>
+        </button>
+    </form>
+</div>
+
+
+                <p class="login-note">
+                    Your accessibility tools are just a step away.
+                </p>
+            </div>
+        </section>
+
+    </main>
+</body>
+</html>

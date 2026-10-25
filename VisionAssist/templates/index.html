@@ -1,0 +1,239 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vision Assist | Dashboard</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="app-layout">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <a href="#home" class="brand">
+                <span class="brand-icon" aria-hidden="true">◉</span>
+                <span>vision<span class="brand-blue">assist</span></span>
+            </a>
+
+            <p class="sidebar-label">WORKSPACE</p>
+
+            <nav class="sidebar-nav" aria-label="Main navigation">
+                <a href="#home" class="nav-link active">
+                    <span aria-hidden="true">⌂</span> Dashboard
+                </a>
+                <a href="#voice-section" class="nav-link">
+                    <span aria-hidden="true">♫</span> Voice assistant
+                </a>
+                <a href="#reading-section" class="nav-link">
+                    <span aria-hidden="true">▤</span> Read text
+                </a>
+                <a href="#contacts-section" class="nav-link">
+                    <span aria-hidden="true">♡</span> Emergency contacts
+                </a>
+            </nav>
+
+            <div class="sidebar-bottom">
+                <div class="sidebar-help">
+                    <span class="help-icon" aria-hidden="true">i</span>
+                    <div>
+                        <strong>Need assistance?</strong>
+                        <p>Use the voice assistant to get started.</p>
+                    </div>
+                </div>
+
+                <a href="{{ url_for('logout') }}" class="logout-link">
+                    <span aria-hidden="true">↪</span> Log out
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main dashboard -->
+        <main class="main-content" id="home">
+            <header class="topbar">
+                <div>
+                    <p class="topbar-caption">YOUR PERSONAL SPACE</p>
+                    <h2>Dashboard</h2>
+                </div>
+                <div class="profile">
+                    <div class="avatar" aria-hidden="true">G</div>
+                    <div class="profile-info">
+                        <strong>{{ guest_name }}</strong>
+                        <span>Guest account</span>
+                    </div>
+                </div>
+            </header>
+
+            <section class="welcome-panel">
+                <div>
+                    <p class="welcome-tag">WELCOME TO VISION ASSIST</p>
+                    <h1>Accessibility, made simpler.</h1>
+                    <p>
+                        Tools to help you listen, read, and stay connected.
+                    </p>
+                </div>
+                <div class="welcome-symbol" aria-hidden="true">
+                    <span>◉</span>
+                </div>
+            </section>
+
+            <section class="section-heading">
+                <div>
+                    <p class="section-kicker">YOUR TOOLS</p>
+                    <h2>Accessibility tools</h2>
+                </div>
+                <span class="section-note">Choose a tool to begin</span>
+            </section>
+
+            <div class="tools-grid">
+
+                <!-- Voice assistant -->
+                <section class="panel tool-card" id="voice-section">
+                    <div class="panel-heading">
+                        <div class="tool-icon voice-icon" aria-hidden="true">
+                            ♫
+                        </div>
+                        <span class="tool-number">01</span>
+                    </div>
+
+                    <h3>Voice assistant</h3>
+                    <p class="tool-description">
+                        Speak a command and listen to the response.
+                    </p>
+
+                    <div id="status" class="status-box"
+                         role="status" aria-live="polite">
+                        Ready when you are.
+                    </div>
+
+                    <button id="micButton" class="primary-button"
+                            type="button">
+                        <span aria-hidden="true">🎙</span>
+                        Start listening
+                    </button>
+
+                    <button id="helpButton" class="subtle-button"
+                            type="button">
+                        Hear instructions <span aria-hidden="true">→</span>
+                    </button>
+
+                    <div class="response-box">
+                        <p class="response-label">YOU SAID</p>
+                        <p id="recognizedText" class="result-text"></p>
+                        <p class="response-label">ASSISTANT RESPONSE</p>
+                        <p id="responseText" class="result-text"
+                           aria-live="polite"></p>
+                    </div>
+                </section>
+
+                <!-- Image reading / OCR -->
+                <section class="panel tool-card" id="reading-section">
+                    <div class="panel-heading">
+                        <div class="tool-icon reading-icon"
+                             aria-hidden="true">▤</div>
+                        <span class="tool-number">02</span>
+                    </div>
+
+                    <h3>Read from an image</h3>
+                    <p class="tool-description">
+                        Extract printed text from an image and hear it aloud.
+                    </p>
+
+                    <label class="upload-area" for="imageInput">
+                        <span class="upload-icon" aria-hidden="true">↑</span>
+                        <strong>Choose an image</strong>
+                        <span>Click to upload a JPG or PNG</span>
+                    </label>
+
+                    <input id="imageInput" type="file"
+                           accept="image/png,image/jpeg">
+
+                    <button id="readButton" class="primary-button"
+                            type="button">
+                        Read text
+                    </button>
+
+                    <div id="ocrResult" class="ocr-result"
+                         role="status" aria-live="polite"></div>
+
+                    <button id="speakOcrButton" class="secondary-button"
+                            type="button" hidden>
+                        Speak extracted text
+                    </button>
+                </section>
+            </div>
+
+            <!-- Emergency contacts -->
+            <section class="section-heading contacts-heading">
+                <div>
+                    <p class="section-kicker">STAY CONNECTED</p>
+                    <h2>Safety & support</h2>
+                </div>
+            </section>
+
+            <section class="panel contacts-panel" id="contacts-section">
+                <div class="contacts-intro">
+                    <div class="tool-icon contacts-icon" aria-hidden="true">
+                        ♡
+                    </div>
+                    <div>
+                        <h3>Emergency contacts</h3>
+                        <p class="tool-description">
+                            Keep trusted people’s numbers ready when you need help.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <div class="form-field">
+                        <label for="contactName">Contact name</label>
+                        <input id="contactName" type="text"
+                               placeholder="e.g. Family">
+                    </div>
+
+                    <div class="form-field">
+                        <label for="contactPhone">Phone number</label>
+                        <input id="contactPhone" type="tel"
+                               placeholder="Enter phone number">
+                    </div>
+
+                    <button id="saveContactButton"
+                            class="primary-button save-button"
+                            type="button">
+                        Save contact
+                    </button>
+                </div>
+
+                <p id="contactStatus" class="contact-status"
+                   role="status" aria-live="polite"></p>
+                <div id="contactList" class="contact-list"></div>
+
+                <div class="emergency-banner">
+                    <div class="emergency-mark" aria-hidden="true">!</div>
+                    <div class="emergency-copy">
+                        <strong>Need urgent help?</strong>
+                        <p>Call India's emergency number.</p>
+                    </div>
+                    <a class="emergency-button" href="tel:112">
+                        Call 112
+                    </a>
+                </div>
+
+                <p class="small-note">
+                    Calls depend on your device and network. Vision Assist
+                    is a supplementary aid and does not replace emergency services.
+                </p>
+            </section>
+
+            <footer class="page-footer">
+                <span>Vision Assist</span>
+                <span>Listen. Read. Stay connected.</span>
+            </footer>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
